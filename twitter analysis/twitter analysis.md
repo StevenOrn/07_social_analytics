@@ -48,6 +48,7 @@ import tweepy
 import matplotlib.pyplot as plt
 import pandas as pd
 from datetime import datetime
+import numpy as np
 
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 analyzer = SentimentIntensityAnalyzer()
@@ -133,193 +134,193 @@ data.reset_index(drop=True)
   <tbody>
     <tr>
       <th>0</th>
-      <td>-0.2263</td>
-      <td>0.137</td>
-      <td>0.863</td>
-      <td>0.000</td>
+      <td>-0.0772</td>
+      <td>0.121</td>
+      <td>0.769</td>
+      <td>0.109</td>
       <td>@BBCWorld</td>
-      <td>Jordan's King Abdullah calls for tax review af...</td>
-      <td>2018-06-05 18:32:39+00:00</td>
+      <td>RT @BBCSport: FULL TIME: Argentina 1-1 Iceland...</td>
+      <td>2018-06-16 15:02:16+00:00</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.2263</td>
-      <td>0.234</td>
-      <td>0.419</td>
-      <td>0.347</td>
+      <td>0.3400</td>
+      <td>0.000</td>
+      <td>0.702</td>
+      <td>0.298</td>
       <td>@BBCWorld</td>
-      <td>Ethiopia 'accepts peace deal' to end Eritrea b...</td>
-      <td>2018-06-05 18:32:37+00:00</td>
+      <td>Spain 'accepts French offer' to receive migran...</td>
+      <td>2018-06-16 14:56:26+00:00</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.0000</td>
+      <td>0.1779</td>
       <td>0.000</td>
-      <td>1.000</td>
-      <td>0.000</td>
+      <td>0.841</td>
+      <td>0.159</td>
       <td>@BBCWorld</td>
-      <td>Parkland teenager David Hogg 'swatted' in pran...</td>
-      <td>2018-06-05 18:30:19+00:00</td>
+      <td>Thai king takes control of some $30bn crown as...</td>
+      <td>2018-06-16 14:40:10+00:00</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-0.6486</td>
-      <td>0.223</td>
-      <td>0.777</td>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>1.000</td>
       <td>0.000</td>
       <td>@BBCWorld</td>
-      <td>Tributes paid as fashion designer Kate Spade i...</td>
-      <td>2018-06-05 17:52:40+00:00</td>
+      <td>German rappers anti-Semitism lyrics probe drop...</td>
+      <td>2018-06-16 14:40:10+00:00</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>-0.6908</td>
-      <td>0.190</td>
-      <td>0.810</td>
+      <td>0.7856</td>
       <td>0.000</td>
+      <td>0.733</td>
+      <td>0.267</td>
       <td>@BBCWorld</td>
-      <td>RT @bbcworldservice: Do asylum seekers from th...</td>
-      <td>2018-06-05 16:52:45+00:00</td>
+      <td>RT @BBCSport: SAVED!\nUp steps Lionel Messi to...</td>
+      <td>2018-06-16 14:24:28+00:00</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>-0.6486</td>
-      <td>0.417</td>
-      <td>0.583</td>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>1.000</td>
       <td>0.000</td>
       <td>@BBCWorld</td>
-      <td>Fashion designer Kate Spade found dead https:/...</td>
-      <td>2018-06-05 16:20:35+00:00</td>
+      <td>Russian conductor Gennady Rozhdestvensky dies ...</td>
+      <td>2018-06-16 14:15:18+00:00</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.7430</td>
+      <td>0.4588</td>
       <td>0.000</td>
-      <td>0.442</td>
-      <td>0.558</td>
+      <td>0.625</td>
+      <td>0.375</td>
       <td>@BBCWorld</td>
-      <td>'Beauty iceberg' thrills Newfoundland and Labr...</td>
-      <td>2018-06-05 16:05:15+00:00</td>
+      <td>ICYMI: Smiling lessons and a robo-shark https:...</td>
+      <td>2018-06-16 13:35:46+00:00</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.0000</td>
+      <td>0.3182</td>
       <td>0.000</td>
-      <td>1.000</td>
-      <td>0.000</td>
+      <td>0.777</td>
+      <td>0.223</td>
       <td>@BBCWorld</td>
-      <td>RT @BBCAfrica: An earthquake is coming. #BBCAf...</td>
-      <td>2018-06-05 15:01:51+00:00</td>
+      <td>Taliban and Afghan forces embrace in Eid cease...</td>
+      <td>2018-06-16 13:10:01+00:00</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>-0.6597</td>
-      <td>0.386</td>
-      <td>0.614</td>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>1.000</td>
       <td>0.000</td>
       <td>@BBCWorld</td>
-      <td>Guatemala's Fuego volcano: How the tragedy unf...</td>
-      <td>2018-06-05 14:44:17+00:00</td>
+      <td>Ronaldo's superhuman match in pictures https:/...</td>
+      <td>2018-06-16 12:28:17+00:00</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>-0.5423</td>
-      <td>0.226</td>
-      <td>0.774</td>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>1.000</td>
       <td>0.000</td>
       <td>@BBCWorld</td>
-      <td>Crocodile kills pastor conducting baptism cere...</td>
-      <td>2018-06-05 14:43:49+00:00</td>
+      <td>RT @BBCSport: ⚡️ “VAR got everyone talking in ...</td>
+      <td>2018-06-16 12:05:35+00:00</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>0.5994</td>
+      <td>0.0000</td>
       <td>0.000</td>
-      <td>0.849</td>
-      <td>0.151</td>
+      <td>1.000</td>
+      <td>0.000</td>
       <td>@BBCWorld</td>
-      <td>RT @BBCSport: Everyone's been loving Nigeria's...</td>
-      <td>2018-06-05 14:20:43+00:00</td>
+      <td>Model Olivia Sang on 'colourism' in the fashio...</td>
+      <td>2018-06-16 11:00:52+00:00</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>0.7244</td>
-      <td>0.000</td>
-      <td>0.497</td>
-      <td>0.503</td>
+      <td>-0.6310</td>
+      <td>0.279</td>
+      <td>0.629</td>
+      <td>0.092</td>
       <td>@BBCWorld</td>
-      <td>Weinstein pleads not guilty to rape charge htt...</td>
-      <td>2018-06-05 14:14:11+00:00</td>
+      <td>Chinese media mock President Trump over trade ...</td>
+      <td>2018-06-16 10:35:35+00:00</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>0.2607</td>
-      <td>0.165</td>
-      <td>0.562</td>
-      <td>0.272</td>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0.000</td>
       <td>@BBCWorld</td>
-      <td>Harvey Weinstein arrives at Manhattan Supreme ...</td>
-      <td>2018-06-05 13:58:41+00:00</td>
+      <td>Harvard University 'discriminates against Asia...</td>
+      <td>2018-06-16 10:11:21+00:00</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>0.0000</td>
-      <td>0.000</td>
-      <td>1.000</td>
+      <td>-0.4939</td>
+      <td>0.242</td>
+      <td>0.758</td>
       <td>0.000</td>
       <td>@BBCWorld</td>
-      <td>Ben Lecomte's bid to be the first to swim the ...</td>
-      <td>2018-06-05 12:58:54+00:00</td>
+      <td>Trade tariffs: Chinese media in Trump 'fools b...</td>
+      <td>2018-06-16 09:24:26+00:00</td>
     </tr>
     <tr>
       <th>14</th>
-      <td>-0.5423</td>
-      <td>0.333</td>
-      <td>0.667</td>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>1.000</td>
       <td>0.000</td>
       <td>@BBCWorld</td>
-      <td>Crocodile kills Ethiopian pastor during lake b...</td>
-      <td>2018-06-05 12:42:41+00:00</td>
+      <td>Frida Kahlo: The fashioning of a global icon h...</td>
+      <td>2018-06-16 07:45:33+00:00</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>0.0000</td>
-      <td>0.000</td>
-      <td>1.000</td>
+      <td>-0.5994</td>
+      <td>0.358</td>
+      <td>0.642</td>
       <td>0.000</td>
       <td>@BBCWorld</td>
-      <td>Police officer pulls king cobra from minivan i...</td>
-      <td>2018-06-05 12:37:53+00:00</td>
+      <td>Yemen war: Government troops 'capture Hudaydah...</td>
+      <td>2018-06-16 07:43:23+00:00</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>0.0000</td>
-      <td>0.000</td>
-      <td>1.000</td>
-      <td>0.000</td>
+      <td>-0.7964</td>
+      <td>0.474</td>
+      <td>0.405</td>
+      <td>0.121</td>
       <td>@BBCWorld</td>
-      <td>Qatar boss: 'Only men can run airlines' https:...</td>
-      <td>2018-06-05 12:30:57+00:00</td>
+      <td>Nicaragua crisis: Truce agreed after weeks of ...</td>
+      <td>2018-06-16 06:38:19+00:00</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>-0.2960</td>
-      <td>0.180</td>
-      <td>0.820</td>
+      <td>-0.6597</td>
+      <td>0.403</td>
+      <td>0.597</td>
       <td>0.000</td>
       <td>@BBCWorld</td>
-      <td>World Cup 2018: Fifa files complaint against t...</td>
-      <td>2018-06-05 12:26:25+00:00</td>
+      <td>Speed limit cut on French roads angers rural v...</td>
+      <td>2018-06-15 23:31:08+00:00</td>
     </tr>
     <tr>
       <th>18</th>
-      <td>0.0516</td>
-      <td>0.246</td>
-      <td>0.492</td>
-      <td>0.262</td>
+      <td>-0.6705</td>
+      <td>0.524</td>
+      <td>0.476</td>
+      <td>0.000</td>
       <td>@BBCWorld</td>
-      <td>India policewoman praised for breastfeeding ab...</td>
-      <td>2018-06-05 12:16:59+00:00</td>
+      <td>Theranos founder hit with criminal charges htt...</td>
+      <td>2018-06-15 22:31:05+00:00</td>
     </tr>
     <tr>
       <th>19</th>
@@ -328,8 +329,8 @@ data.reset_index(drop=True)
       <td>1.000</td>
       <td>0.000</td>
       <td>@BBCWorld</td>
-      <td>Wreck-It Ralph 2: Disney princesses unite over...</td>
-      <td>2018-06-05 11:58:42+00:00</td>
+      <td>US child migrants: 2,000 separated from famili...</td>
+      <td>2018-06-15 20:46:41+00:00</td>
     </tr>
     <tr>
       <th>20</th>
@@ -338,8 +339,8 @@ data.reset_index(drop=True)
       <td>1.000</td>
       <td>0.000</td>
       <td>@BBCWorld</td>
-      <td>Dutch PM Mark Rutte cleans up parliament coffe...</td>
-      <td>2018-06-05 11:28:09+00:00</td>
+      <td>RT @BBCNews: Tributes have been paid to renown...</td>
+      <td>2018-06-15 20:25:57+00:00</td>
     </tr>
     <tr>
       <th>21</th>
@@ -348,88 +349,88 @@ data.reset_index(drop=True)
       <td>1.000</td>
       <td>0.000</td>
       <td>@BBCWorld</td>
-      <td>Saudi Arabia issues first driving licences to ...</td>
-      <td>2018-06-05 11:04:56+00:00</td>
+      <td>RT @BBCSport: FT #POR 3-3 #ESP \n\nWhere do yo...</td>
+      <td>2018-06-15 19:55:20+00:00</td>
     </tr>
     <tr>
       <th>22</th>
-      <td>0.4019</td>
+      <td>-0.7783</td>
+      <td>0.493</td>
+      <td>0.507</td>
       <td>0.000</td>
-      <td>0.829</td>
-      <td>0.171</td>
       <td>@BBCWorld</td>
-      <td>Former North Korean spies see the country's gr...</td>
-      <td>2018-06-05 10:55:10+00:00</td>
+      <td>Eiffel Tower perimeter fence built to stop ter...</td>
+      <td>2018-06-15 19:09:37+00:00</td>
     </tr>
     <tr>
       <th>23</th>
-      <td>0.2023</td>
+      <td>0.0000</td>
       <td>0.000</td>
-      <td>0.833</td>
-      <td>0.167</td>
+      <td>1.000</td>
+      <td>0.000</td>
       <td>@BBCWorld</td>
-      <td>Same-sex spouses have EU residence rights, top...</td>
-      <td>2018-06-05 10:29:21+00:00</td>
+      <td>RT @BBCPallab: #StephenHawking’s final message...</td>
+      <td>2018-06-15 17:25:08+00:00</td>
     </tr>
     <tr>
       <th>24</th>
-      <td>-0.6249</td>
-      <td>0.368</td>
-      <td>0.486</td>
-      <td>0.146</td>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0.000</td>
       <td>@BBCWorld</td>
-      <td>Syria war: Amnesty says UK 'should come clean'...</td>
-      <td>2018-06-05 10:26:48+00:00</td>
+      <td>Colombia election: Voters polarised ahead of r...</td>
+      <td>2018-06-15 17:24:47+00:00</td>
     </tr>
     <tr>
       <th>25</th>
-      <td>0.0000</td>
-      <td>0.000</td>
-      <td>1.000</td>
-      <td>0.000</td>
+      <td>0.2732</td>
+      <td>0.182</td>
+      <td>0.490</td>
+      <td>0.329</td>
       <td>@BBCWorld</td>
-      <td>After a student took a cardboard cutout of @Da...</td>
-      <td>2018-06-05 10:26:30+00:00</td>
+      <td>UAE reinforcements in Eritrea ready to join Hu...</td>
+      <td>2018-06-15 17:22:30+00:00</td>
     </tr>
     <tr>
       <th>26</th>
+      <td>0.5859</td>
+      <td>0.000</td>
+      <td>0.808</td>
+      <td>0.192</td>
+      <td>@BBCWorld</td>
+      <td>World Cup 2018: Iran beat Morocco to win first...</td>
+      <td>2018-06-15 17:10:44+00:00</td>
+    </tr>
+    <tr>
+      <th>27</th>
       <td>0.0000</td>
       <td>0.000</td>
       <td>1.000</td>
       <td>0.000</td>
       <td>@BBCWorld</td>
-      <td>Billionaire Koch brothers take on Trump over t...</td>
-      <td>2018-06-05 10:19:06+00:00</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>-0.4215</td>
-      <td>0.259</td>
-      <td>0.741</td>
-      <td>0.000</td>
-      <td>@BBCWorld</td>
-      <td>Tennis match-fixing investigators detain 13 in...</td>
-      <td>2018-06-05 10:14:35+00:00</td>
+      <td>🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊🐊...</td>
+      <td>2018-06-15 16:56:53+00:00</td>
     </tr>
     <tr>
       <th>28</th>
-      <td>-0.4019</td>
-      <td>0.172</td>
-      <td>0.828</td>
+      <td>0.4215</td>
       <td>0.000</td>
+      <td>0.797</td>
+      <td>0.203</td>
       <td>@BBCWorld</td>
-      <td>Pep Guardiola: Yaya Toure says Man City boss '...</td>
-      <td>2018-06-05 09:58:36+00:00</td>
+      <td>RT @BBC_HaveYourSay: "I am lucky. I tend to ju...</td>
+      <td>2018-06-15 16:39:37+00:00</td>
     </tr>
     <tr>
       <th>29</th>
-      <td>-0.4019</td>
-      <td>0.172</td>
-      <td>0.828</td>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>1.000</td>
       <td>0.000</td>
       <td>@BBCWorld</td>
-      <td>RT @BBCSport: Pep Guardiola "often has problem...</td>
-      <td>2018-06-05 09:40:58+00:00</td>
+      <td>Judge orders Manafort be held in jail https://...</td>
+      <td>2018-06-15 15:54:17+00:00</td>
     </tr>
     <tr>
       <th>...</th>
@@ -448,188 +449,188 @@ data.reset_index(drop=True)
       <td>1.000</td>
       <td>0.000</td>
       <td>@nytimes</td>
-      <td>RT @nickconfessore: NEW w/@ceciliakang &amp;amp; @...</td>
-      <td>2018-06-05 04:22:02+00:00</td>
+      <td>American Media Inc., the tabloid publisher who...</td>
+      <td>2018-06-15 23:12:04+00:00</td>
     </tr>
     <tr>
       <th>471</th>
-      <td>0.6249</td>
+      <td>0.5719</td>
       <td>0.000</td>
-      <td>0.758</td>
-      <td>0.242</td>
+      <td>0.837</td>
+      <td>0.163</td>
       <td>@nytimes</td>
-      <td>7 months after Maine voters approved a ballot ...</td>
-      <td>2018-06-05 04:06:03+00:00</td>
+      <td>RT @NYTMetro: António Costa, Portugal's prime ...</td>
+      <td>2018-06-15 23:01:07+00:00</td>
     </tr>
     <tr>
       <th>472</th>
-      <td>0.8016</td>
-      <td>0.000</td>
-      <td>0.605</td>
-      <td>0.395</td>
-      <td>@nytimes</td>
-      <td>RT @nytdavidbrooks: The best relationship advi...</td>
-      <td>2018-06-05 03:47:05+00:00</td>
-    </tr>
-    <tr>
-      <th>473</th>
-      <td>0.0000</td>
-      <td>0.000</td>
-      <td>1.000</td>
-      <td>0.000</td>
-      <td>@nytimes</td>
-      <td>Netflix is turning 8 Dolly Parton songs into f...</td>
-      <td>2018-06-05 03:32:02+00:00</td>
-    </tr>
-    <tr>
-      <th>474</th>
-      <td>-0.3182</td>
-      <td>0.126</td>
-      <td>0.874</td>
-      <td>0.000</td>
-      <td>@nytimes</td>
-      <td>RT @nytopinion: What does the Constitution req...</td>
-      <td>2018-06-05 03:17:05+00:00</td>
-    </tr>
-    <tr>
-      <th>475</th>
-      <td>0.7717</td>
-      <td>0.000</td>
-      <td>0.739</td>
-      <td>0.261</td>
-      <td>@nytimes</td>
-      <td>California features several races this year th...</td>
-      <td>2018-06-05 03:02:07+00:00</td>
-    </tr>
-    <tr>
-      <th>476</th>
-      <td>0.2500</td>
-      <td>0.109</td>
-      <td>0.652</td>
-      <td>0.239</td>
-      <td>@nytimes</td>
-      <td>News Analysis: President Trump and his legal a...</td>
-      <td>2018-06-05 02:47:07+00:00</td>
-    </tr>
-    <tr>
-      <th>477</th>
-      <td>0.5106</td>
-      <td>0.000</td>
-      <td>0.858</td>
-      <td>0.142</td>
-      <td>@nytimes</td>
-      <td>He was cheered at his graduation for quoting a...</td>
-      <td>2018-06-05 02:32:03+00:00</td>
-    </tr>
-    <tr>
-      <th>478</th>
-      <td>0.0000</td>
-      <td>0.000</td>
-      <td>1.000</td>
-      <td>0.000</td>
-      <td>@nytimes</td>
-      <td>Latinos make up 34% of California’s adult popu...</td>
-      <td>2018-06-05 02:15:08+00:00</td>
-    </tr>
-    <tr>
-      <th>479</th>
-      <td>0.1531</td>
-      <td>0.096</td>
-      <td>0.780</td>
-      <td>0.124</td>
-      <td>@nytimes</td>
-      <td>Nearly 3 in 4 adults say teachers’ salaries ar...</td>
-      <td>2018-06-05 02:02:05+00:00</td>
-    </tr>
-    <tr>
-      <th>480</th>
-      <td>0.8442</td>
-      <td>0.000</td>
-      <td>0.698</td>
-      <td>0.302</td>
-      <td>@nytimes</td>
-      <td>RT @katierogers: The East Wing has made it pre...</td>
-      <td>2018-06-05 01:47:06+00:00</td>
-    </tr>
-    <tr>
-      <th>481</th>
-      <td>-0.5574</td>
-      <td>0.167</td>
-      <td>0.833</td>
-      <td>0.000</td>
-      <td>@nytimes</td>
-      <td>Saudi Arabia issued its first drivers licenses...</td>
-      <td>2018-06-05 01:32:06+00:00</td>
-    </tr>
-    <tr>
-      <th>482</th>
-      <td>0.4019</td>
-      <td>0.000</td>
-      <td>0.863</td>
-      <td>0.137</td>
-      <td>@nytimes</td>
-      <td>In court documents, prosecutors working for th...</td>
-      <td>2018-06-05 01:17:00+00:00</td>
-    </tr>
-    <tr>
-      <th>483</th>
-      <td>0.0000</td>
-      <td>0.000</td>
-      <td>1.000</td>
-      <td>0.000</td>
-      <td>@nytimes</td>
-      <td>Breaking News: Paul Manafort, President Trump'...</td>
-      <td>2018-06-05 01:05:10+00:00</td>
-    </tr>
-    <tr>
-      <th>484</th>
       <td>0.0000</td>
       <td>0.000</td>
       <td>1.000</td>
       <td>0.000</td>
       <td>@nytimes</td>
       <td>Evening Briefing: Here's what you need to know...</td>
-      <td>2018-06-05 01:02:03+00:00</td>
+      <td>2018-06-15 22:47:04+00:00</td>
+    </tr>
+    <tr>
+      <th>473</th>
+      <td>0.4215</td>
+      <td>0.059</td>
+      <td>0.743</td>
+      <td>0.198</td>
+      <td>@nytimes</td>
+      <td>A Canadian clarinetist had been awarded a full...</td>
+      <td>2018-06-15 22:32:02+00:00</td>
+    </tr>
+    <tr>
+      <th>474</th>
+      <td>0.5719</td>
+      <td>0.099</td>
+      <td>0.691</td>
+      <td>0.210</td>
+      <td>@nytimes</td>
+      <td>RT @sarahlyall: The best thing about Heimir, t...</td>
+      <td>2018-06-15 22:17:05+00:00</td>
+    </tr>
+    <tr>
+      <th>475</th>
+      <td>-0.3384</td>
+      <td>0.130</td>
+      <td>0.870</td>
+      <td>0.000</td>
+      <td>@nytimes</td>
+      <td>Salmonella outbreaks have prompted recalls of ...</td>
+      <td>2018-06-15 22:01:05+00:00</td>
+    </tr>
+    <tr>
+      <th>476</th>
+      <td>-0.5574</td>
+      <td>0.146</td>
+      <td>0.854</td>
+      <td>0.000</td>
+      <td>@nytimes</td>
+      <td>Dorothy Cotton, a campaigner for voting rights...</td>
+      <td>2018-06-15 21:46:04+00:00</td>
+    </tr>
+    <tr>
+      <th>477</th>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0.000</td>
+      <td>@nytimes</td>
+      <td>How Cristiano Ronaldo stepped over Spain and g...</td>
+      <td>2018-06-15 21:39:03+00:00</td>
+    </tr>
+    <tr>
+      <th>478</th>
+      <td>0.5719</td>
+      <td>0.000</td>
+      <td>0.778</td>
+      <td>0.222</td>
+      <td>@nytimes</td>
+      <td>A septuagenarian businessman, reality televisi...</td>
+      <td>2018-06-15 21:31:06+00:00</td>
+    </tr>
+    <tr>
+      <th>479</th>
+      <td>-0.4588</td>
+      <td>0.158</td>
+      <td>0.842</td>
+      <td>0.000</td>
+      <td>@nytimes</td>
+      <td>The disgraced founder of Theranos, Elizabeth H...</td>
+      <td>2018-06-15 21:24:45+00:00</td>
+    </tr>
+    <tr>
+      <th>480</th>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0.000</td>
+      <td>@nytimes</td>
+      <td>Tequila, lime, and a touch of orange. https://...</td>
+      <td>2018-06-15 21:16:06+00:00</td>
+    </tr>
+    <tr>
+      <th>481</th>
+      <td>0.2023</td>
+      <td>0.000</td>
+      <td>0.933</td>
+      <td>0.067</td>
+      <td>@nytimes</td>
+      <td>RT @EricLiptonNYT: Scott Pruitt wanted to go t...</td>
+      <td>2018-06-15 21:01:12+00:00</td>
+    </tr>
+    <tr>
+      <th>482</th>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0.000</td>
+      <td>@nytimes</td>
+      <td>Federal advisers have shut down a $100 million...</td>
+      <td>2018-06-15 20:46:07+00:00</td>
+    </tr>
+    <tr>
+      <th>483</th>
+      <td>0.1531</td>
+      <td>0.151</td>
+      <td>0.672</td>
+      <td>0.176</td>
+      <td>@nytimes</td>
+      <td>Amy Krouse Rosenthal died on March 13, 2017, 1...</td>
+      <td>2018-06-15 20:41:05+00:00</td>
+    </tr>
+    <tr>
+      <th>484</th>
+      <td>0.2263</td>
+      <td>0.000</td>
+      <td>0.909</td>
+      <td>0.091</td>
+      <td>@nytimes</td>
+      <td>"Allow me to introduce you to the gentleman of...</td>
+      <td>2018-06-15 20:37:40+00:00</td>
     </tr>
     <tr>
       <th>485</th>
-      <td>0.0000</td>
+      <td>0.6705</td>
       <td>0.000</td>
-      <td>1.000</td>
-      <td>0.000</td>
+      <td>0.776</td>
+      <td>0.224</td>
       <td>@nytimes</td>
-      <td>RT @coopnytimes: The @DallasSymphony will comm...</td>
-      <td>2018-06-05 00:47:06+00:00</td>
+      <td>"A little over a year ago, my wife, Amy Krouse...</td>
+      <td>2018-06-15 20:31:04+00:00</td>
     </tr>
     <tr>
       <th>486</th>
-      <td>0.0000</td>
+      <td>0.5719</td>
       <td>0.000</td>
-      <td>1.000</td>
-      <td>0.000</td>
+      <td>0.778</td>
+      <td>0.222</td>
       <td>@nytimes</td>
-      <td>Howard Schultz is stepping away from Starbucks...</td>
-      <td>2018-06-05 00:32:05+00:00</td>
+      <td>Cristiano Ronaldo won the day. His team had to...</td>
+      <td>2018-06-15 20:23:02+00:00</td>
     </tr>
     <tr>
       <th>487</th>
-      <td>-0.5574</td>
-      <td>0.159</td>
-      <td>0.841</td>
+      <td>-0.4588</td>
+      <td>0.167</td>
+      <td>0.833</td>
       <td>0.000</td>
       <td>@nytimes</td>
-      <td>Chile will become the first nation in the Amer...</td>
-      <td>2018-06-05 00:17:02+00:00</td>
+      <td>On Friday, Trump attacked the FBI, congression...</td>
+      <td>2018-06-15 20:16:07+00:00</td>
     </tr>
     <tr>
       <th>488</th>
-      <td>0.7351</td>
-      <td>0.000</td>
-      <td>0.617</td>
-      <td>0.383</td>
+      <td>-0.3182</td>
+      <td>0.228</td>
+      <td>0.609</td>
+      <td>0.162</td>
       <td>@nytimes</td>
-      <td>The 25 best American plays of the last 25 year...</td>
-      <td>2018-06-05 00:03:05+00:00</td>
+      <td>In Opinion, \n\nAn obscure biologist killed a ...</td>
+      <td>2018-06-15 20:01:08+00:00</td>
     </tr>
     <tr>
       <th>489</th>
@@ -638,18 +639,18 @@ data.reset_index(drop=True)
       <td>1.000</td>
       <td>0.000</td>
       <td>@nytimes</td>
-      <td>RT @NYTSports: Eagles owner Jeffrey Lurie call...</td>
-      <td>2018-06-04 23:53:03+00:00</td>
+      <td>RT @nytimesarts: Stephen Colbert: "So far 1,35...</td>
+      <td>2018-06-15 19:46:01+00:00</td>
     </tr>
     <tr>
       <th>490</th>
-      <td>0.5994</td>
+      <td>0.2960</td>
       <td>0.000</td>
-      <td>0.804</td>
-      <td>0.196</td>
+      <td>0.901</td>
+      <td>0.099</td>
       <td>@nytimes</td>
-      <td>President Trump appears to have disinvited the...</td>
-      <td>2018-06-04 23:47:01+00:00</td>
+      <td>RT @rcallimachi: Hi guys, come join @AndyMills...</td>
+      <td>2018-06-15 19:31:39+00:00</td>
     </tr>
     <tr>
       <th>491</th>
@@ -658,8 +659,8 @@ data.reset_index(drop=True)
       <td>1.000</td>
       <td>0.000</td>
       <td>@nytimes</td>
-      <td>RT @NYTSports: President Trump seems to have d...</td>
-      <td>2018-06-04 23:36:01+00:00</td>
+      <td>This Macy's went from a mall mainstay to a hom...</td>
+      <td>2018-06-15 19:31:05+00:00</td>
     </tr>
     <tr>
       <th>492</th>
@@ -668,48 +669,48 @@ data.reset_index(drop=True)
       <td>1.000</td>
       <td>0.000</td>
       <td>@nytimes</td>
-      <td>President Trump's team repeatedly pushed a fal...</td>
-      <td>2018-06-04 23:32:03+00:00</td>
+      <td>RT @NYTSports: A rocket from Nacho puts Spain ...</td>
+      <td>2018-06-15 19:29:00+00:00</td>
     </tr>
     <tr>
       <th>493</th>
-      <td>0.0000</td>
-      <td>0.000</td>
-      <td>1.000</td>
+      <td>-0.2960</td>
+      <td>0.136</td>
+      <td>0.864</td>
       <td>0.000</td>
       <td>@nytimes</td>
-      <td>RT @nytgraphics: The numbers that explain why ...</td>
-      <td>2018-06-04 23:17:06+00:00</td>
+      <td>Many mammals are changing their sleep schedule...</td>
+      <td>2018-06-15 19:20:08+00:00</td>
     </tr>
     <tr>
       <th>494</th>
-      <td>0.4939</td>
+      <td>0.2960</td>
       <td>0.000</td>
-      <td>0.868</td>
-      <td>0.132</td>
+      <td>0.891</td>
+      <td>0.109</td>
       <td>@nytimes</td>
-      <td>The whale washed ashore with nearly 18 pounds ...</td>
-      <td>2018-06-04 23:02:04+00:00</td>
+      <td>Join NYT reporters Rukmini Callimachi and Andy...</td>
+      <td>2018-06-15 19:12:00+00:00</td>
     </tr>
     <tr>
       <th>495</th>
-      <td>0.0000</td>
-      <td>0.000</td>
-      <td>1.000</td>
+      <td>-0.7650</td>
+      <td>0.336</td>
+      <td>0.664</td>
       <td>0.000</td>
       <td>@nytimes</td>
-      <td>Evening Briefing: Here's what you need to know...</td>
-      <td>2018-06-04 22:47:06+00:00</td>
+      <td>A 2-part “Caliphate” episode: An ISIS prisoner...</td>
+      <td>2018-06-15 19:10:06+00:00</td>
     </tr>
     <tr>
       <th>496</th>
-      <td>0.0000</td>
+      <td>0.2023</td>
       <td>0.000</td>
-      <td>1.000</td>
-      <td>0.000</td>
+      <td>0.913</td>
+      <td>0.087</td>
       <td>@nytimes</td>
-      <td>Howard Schultz took Starbucks from a few store...</td>
-      <td>2018-06-04 22:32:06+00:00</td>
+      <td>Over 30 days and 300 miles, in temperatures re...</td>
+      <td>2018-06-15 19:01:03+00:00</td>
     </tr>
     <tr>
       <th>497</th>
@@ -718,28 +719,28 @@ data.reset_index(drop=True)
       <td>1.000</td>
       <td>0.000</td>
       <td>@nytimes</td>
-      <td>Will Democrats be able to flip several House s...</td>
-      <td>2018-06-04 22:15:09+00:00</td>
+      <td>Trump's “Fox and Friends.” interview morphed i...</td>
+      <td>2018-06-15 18:46:05+00:00</td>
     </tr>
     <tr>
       <th>498</th>
+      <td>-0.5994</td>
+      <td>0.178</td>
+      <td>0.822</td>
+      <td>0.000</td>
+      <td>@nytimes</td>
+      <td>Trade skirmish or war? Here are answers to que...</td>
+      <td>2018-06-15 18:32:52+00:00</td>
+    </tr>
+    <tr>
+      <th>499</th>
       <td>0.0000</td>
       <td>0.000</td>
       <td>1.000</td>
       <td>0.000</td>
       <td>@nytimes</td>
-      <td>On Broadway, they’re the Plastics. During thei...</td>
-      <td>2018-06-04 22:02:06+00:00</td>
-    </tr>
-    <tr>
-      <th>499</th>
-      <td>-0.4019</td>
-      <td>0.114</td>
-      <td>0.886</td>
-      <td>0.000</td>
-      <td>@nytimes</td>
-      <td>RT @nytopinion: Get arguments and opinions on ...</td>
-      <td>2018-06-04 21:47:05+00:00</td>
+      <td>As Ronaldo takes the field, we’re offering a n...</td>
+      <td>2018-06-15 18:20:06+00:00</td>
     </tr>
   </tbody>
 </table>
@@ -816,38 +817,38 @@ data.groupby('Target').mean()
   <tbody>
     <tr>
       <th>@BBCWorld</th>
-      <td>-0.078728</td>
-      <td>0.11146</td>
-      <td>0.80771</td>
-      <td>0.08083</td>
+      <td>-0.064174</td>
+      <td>0.10934</td>
+      <td>0.82771</td>
+      <td>0.06296</td>
     </tr>
     <tr>
       <th>@CBSNews</th>
-      <td>-0.076623</td>
-      <td>0.10142</td>
-      <td>0.83656</td>
-      <td>0.06201</td>
+      <td>-0.181800</td>
+      <td>0.12555</td>
+      <td>0.83288</td>
+      <td>0.04161</td>
     </tr>
     <tr>
       <th>@CNN</th>
-      <td>-0.008537</td>
-      <td>0.06570</td>
-      <td>0.87071</td>
-      <td>0.06361</td>
+      <td>-0.010911</td>
+      <td>0.06698</td>
+      <td>0.86150</td>
+      <td>0.07152</td>
     </tr>
     <tr>
       <th>@FoxNews</th>
-      <td>0.005365</td>
-      <td>0.08723</td>
-      <td>0.83661</td>
-      <td>0.07617</td>
+      <td>-0.058534</td>
+      <td>0.08105</td>
+      <td>0.86304</td>
+      <td>0.05592</td>
     </tr>
     <tr>
       <th>@nytimes</th>
-      <td>0.061547</td>
-      <td>0.05099</td>
-      <td>0.86840</td>
-      <td>0.08061</td>
+      <td>-0.042649</td>
+      <td>0.08255</td>
+      <td>0.85530</td>
+      <td>0.06214</td>
     </tr>
   </tbody>
 </table>
@@ -855,6 +856,24 @@ data.groupby('Target').mean()
 
 
 
-1) BBC tweets a lot less than the other news sites resulting in the graph skewed to the left as grabbing 100 of their latests tweets shows tweets from a lot older day than the other news sources
-2) There are many neutral tweets shown by a line along y=0
-3) There is no trend of a certain news source using more positive/negative words in their tweets, all seem to have their tweets' VADER scores seem to be pretty random
+
+```python
+objects = ('BBcWorld', 'CBSNews', 'CNN', 'FoxNews', 'nytimes')
+colors = ['lightskyblue','green','red','blue','yellow']
+y_pos = np.arange(len(objects))
+ 
+plt.bar(y_pos, data.groupby('Target').compound.mean(), align='center',color = colors)
+plt.xticks(y_pos, objects)
+plt.ylabel('compound average')
+plt.title('Overall media sentiment')
+ 
+plt.show()
+```
+
+
+![png](output_9_0.png)
+
+
+1. BBC tweets a lot less than the other news sites resulting in the graph skewed to the left as grabbing 100 of their latests tweets shows tweets from a lot older day than the other news sources
+2. There are many neutral tweets shown by a line along y=0
+3. There is no trend of a certain news source using more positive/negative words in their tweets, all seem to have their tweets' VADER scores seem to be pretty random
